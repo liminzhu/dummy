@@ -4,8 +4,6 @@ on:
   issue_comment:
     types:
       - created
-
-on:
   issue:
     types: 
       - opened
