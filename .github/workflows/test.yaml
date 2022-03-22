@@ -1,23 +1,23 @@
-name: Like pizza
+name: Sync Issue to Azure DevOps work item
 
 on:
-  issue_comment:
-    types:
-      - created
+  issues:
+    types: [labeled]
 
 jobs:
-  like-pizza:
+  alert:
     runs-on: ubuntu-latest
-    if: ${{ github.event.comment.body == 'I like pizza'}}
-    steps:
-      - name: Like pizza
-        uses: actions/github-script@v4
-        with:
-          script: |
-            const {owner, repo} = context.issue
-            github.reactions.createForIssueComment({
-              owner,
-              repo,
-              comment_id: context.payload.comment.id,
-              content: "+1",
-            });            
+    name: Testing workflow
+    steps:       
+    - uses: liminzhu/github-actions-issue-to-work-item@development
+      env:
+        github_token: "${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}"  
+        ado_token: '${{ secrets.ADO_PERSONAL_ACCESS_TOKEN }}'
+        ado_organization: 'microsoftTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST'
+        ado_project: 'Edge'
+        ado_area_path: 'Edge\Dev Experience\WebView'
+        ado_tags: 'WV2_GitHub'
+        ado_tag_on_close: 'WV2_GitHub_Closed'
+        ado_bypassrules: false
+        ado_set_labels: false
+        create_on_tag: 'tracked'
