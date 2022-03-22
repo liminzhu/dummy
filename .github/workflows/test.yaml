@@ -2,18 +2,16 @@ name: test workflow
 
 on:
   issue_comment:
-    types:
-      - created
+    types: [created]
   issues:
-    types: 
-      - opened
+    types: [opened]
 
 jobs:
   alert:
     runs-on: ubuntu-latest
     name: Testing workflow
     steps:       
-    - uses: liminzhu/github-actions-issue-to-work-item@master
+    - uses: https://github.com/champnic/Porpoise@main
       env:
         github_token: "${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}"  
         ado_token: '${{ secrets.ADO_PERSONAL_ACCESS_TOKEN }}'
