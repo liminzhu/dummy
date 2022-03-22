@@ -1,4 +1,4 @@
-name: test
+name: Like pizza
 
 on:
   issue_comment:
@@ -6,10 +6,12 @@ on:
       - created
 
 jobs:
-  comment:
+  like-pizza:
     runs-on: ubuntu-latest
+    if: ${{ github.event.comment.body == 'I like pizza'}}
     steps:
-      - uses: actions/github-script@v6
+      - name: Like pizza
+        uses: actions/github-script@v4
         with:
           script: |
             const {owner, repo} = context.issue
@@ -18,4 +20,4 @@ jobs:
               repo,
               comment_id: context.payload.comment.id,
               content: "+1",
-            });          
+            });            
