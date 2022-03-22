@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Testing workflow
     steps:       
-    - uses: https://github.com/champnic/Porpoise@main
+    - uses: champnic/Porpoise@main
       env:
         github_token: "${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}"  
         ado_token: '${{ secrets.ADO_PERSONAL_ACCESS_TOKEN }}'
